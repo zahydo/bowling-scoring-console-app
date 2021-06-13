@@ -1,8 +1,12 @@
 package com.jobsity.app.model.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
-import com.jobsity.app.util.Contants;
+import com.jobsity.app.model.entities.Game;
+import com.jobsity.app.util.Constants;
 
 public class Validators {
 
@@ -14,7 +18,7 @@ public class Validators {
             if (dataArray.length == 2) {
                 String roll = dataArray[1];
                 String player = dataArray[0];
-                if (!roll.matches(Contants.REGGEX_VALID_ROLL_INPUT)) {
+                if (!roll.matches(Constants.REGGEX_VALID_ROLL_INPUT)) {
                     isValid = false;
                     throw new IOException(errorMessage);
                 }
@@ -29,5 +33,46 @@ public class Validators {
             isValid = false;
         }
         return isValid;
+    }
+
+    public static boolean isCompleteRolls(HashMap<String, ArrayList<String>> data, Game game) throws Exception {
+        Set<String> players = data.keySet();
+        boolean isComplete = true;
+        Integer ROLLS_MIN_LIMIT = game.getRollsMinLimit();
+        Integer ROLLS_MAX_LIMIT = game.getRollsLimit();
+        String invalidPlayer = players.stream().filter(player -> {
+            return data.get(player).size() > ROLLS_MAX_LIMIT || data.get(player).size() < ROLLS_MIN_LIMIT;
+        }).findFirst().orElse(null);
+        if (invalidPlayer != null) {
+            int size = data.get(invalidPlayer).size();
+            if (size > ROLLS_MAX_LIMIT) {
+                isComplete = false;
+                throw new Exception("'" + invalidPlayer + "' has " + (size - ROLLS_MAX_LIMIT)  + " extra rolls");
+            } else if (size < ROLLS_MIN_LIMIT) {
+                isComplete = false;
+                throw new Exception("'" + invalidPlayer + "' has " + (ROLLS_MAX_LIMIT-size)  + " pending rolls");
+            }
+        } 
+        /*else {
+            for (String player : players) {
+                ArrayList<Integer> strikes = new ArrayList<>();
+                ArrayList<String> rolls = data.get(player);
+                // It only validates the strikes if is not the frame 10 (last 3 rolls)
+                for (int i = 0; i < rolls.size() - 3; i++) {
+                    if (rolls.get(i).equals("10")){
+                        strikes.add(i);
+                    }
+                }
+                int counter = strikes.size() + rolls.size();
+                if (counter > ROLLS_MAX_LIMIT){
+                    isComplete = false;
+                    throw new Exception("Player '" + player + "' has more than allowed rolls");
+                } else if (counter < ROLLS_MAX_LIMIT){
+                    isComplete = false;
+                    throw new Exception("Player '" + player + "' has less than allowed rolls");
+                }
+            }
+        }*/
+        return isComplete;
     }
 }
