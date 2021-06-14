@@ -60,6 +60,14 @@ public class Game {
         this.rollsMinLimit = rollsMinLimit;
     }
 
+    public ArrayList<String> getFramesIds() {
+        ArrayList<String> framesIds = new ArrayList<>(getFrameLimit());
+        for (int i = 0; i < getFrameLimit(); i++) {
+            framesIds.add(String.valueOf(i+1));
+        }
+        return framesIds;
+    }
+
     @Override
     public String toString() {
         return name + " - players: " + players.toString();
