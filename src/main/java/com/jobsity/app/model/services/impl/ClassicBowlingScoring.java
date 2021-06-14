@@ -9,7 +9,7 @@ import com.jobsity.app.model.services.interfaces.GameScoring;
 import com.jobsity.app.model.util.Utils;
 
 public class ClassicBowlingScoring implements GameScoring {
-    private final Logger LOG = Logger.getLogger(ClassicBowlingScoring.class.getName());
+    private static final Logger LOG = Logger.getLogger(ClassicBowlingScoring.class.getName());
 
     @Override
     public void calculate(Game game) {

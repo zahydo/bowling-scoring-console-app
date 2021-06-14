@@ -14,7 +14,7 @@ import com.jobsity.app.model.util.Utils;
 import com.jobsity.app.model.util.Validators;
 
 public class ClassicBowlingBuilder extends GameBuilder {
-    private final Logger LOG = Logger.getLogger(ClassicBowlingBuilder.class.getName());
+    private static final Logger LOG = Logger.getLogger(ClassicBowlingBuilder.class.getName());
 
     @Override
     public void buildPlayers(HashMap<String, ArrayList<String>> data) {
@@ -25,12 +25,12 @@ public class ClassicBowlingBuilder extends GameBuilder {
             }
             if (Validators.isCompleteRolls(data, this.getGame())) {
                 data.keySet().stream().forEach(player -> {
-                    LOG.info("Start: Building player: " + player);
+                    LOG.log(Level.INFO, "Start: Building player: {0}", player);
                     Player playerObject = new Player();
                     playerObject.setName(player);
                     playerObject.setFrames(buildFrames(data, player));
                     if (game.getPlayers() == null) {
-                        game.setPlayers(new ArrayList<Player>());
+                        game.setPlayers(new ArrayList<>());
                     }
                     game.getPlayers().add(playerObject);
                 });
@@ -38,6 +38,7 @@ public class ClassicBowlingBuilder extends GameBuilder {
             LOG.info("Done: Build players");
         } catch (Exception e) {
             LOG.log(Level.SEVERE, e.getMessage(), e.fillInStackTrace());
+            System.exit(0);
         }
     }
 
@@ -74,7 +75,7 @@ public class ClassicBowlingBuilder extends GameBuilder {
             }
         }
         if (frameCounter != game.getFrameLimit()) {
-            LOG.log(Level.SEVERE, "Check rolls for: '" + player + "'");
+            LOG.log(Level.SEVERE, "Check rolls for: ''{0}''", player);
             System.exit(0);
         }
         return frames;

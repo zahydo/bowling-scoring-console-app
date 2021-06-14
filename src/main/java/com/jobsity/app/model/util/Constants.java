@@ -6,5 +6,5 @@ public class Constants {
     public static final Integer DEFAULT_FRAME_LIMIT = 10;
     public static final Integer DEFAULT_ROLLS_LIMIT = DEFAULT_FRAME_LIMIT * 2 + 1;
     public static final Integer DEFAULT_ROLLS_MIN = DEFAULT_FRAME_LIMIT + 2;
-
+    public static final Integer MAX_DEFAULT_NAME_LENGTH = 25;
 }

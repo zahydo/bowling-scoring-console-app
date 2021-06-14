@@ -21,7 +21,7 @@ public class Validators {
                     isValid = false;
                     throw new IOException(errorMessage);
                 }
-                if (player.length() > 30) {
+                if (player.length() > Constants.MAX_DEFAULT_NAME_LENGTH) {
                     isValid = false;
                     throw new IOException("Player '" + player + "' is not a valid name");
                 }

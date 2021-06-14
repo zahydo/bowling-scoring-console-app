@@ -10,7 +10,7 @@ import com.jobsity.app.model.services.interfaces.GameFacade;
 import com.jobsity.app.model.services.interfaces.GameScoring;
 
 public class ClassicBowlingFacade extends GameFacade {
-    private final Logger LOG = Logger.getLogger(ClassicBowlingFacade.class.getName());
+    private static final Logger LOG = Logger.getLogger(ClassicBowlingFacade.class.getName());
 
     public ClassicBowlingFacade() {
         super();
@@ -21,10 +21,10 @@ public class ClassicBowlingFacade extends GameFacade {
         LOG.info("Start: Runing game...");
         GameBuilder builder = new ClassicBowlingBuilder();
         builder.buildPlayers(data);
-        Game game = builder.getGame();
+        Game classicBowlingGame = builder.getGame();
         GameScoring scoring = new ClassicBowlingScoring();
-        scoring.calculate(game);
-        this.setGame(game);
+        scoring.calculate(classicBowlingGame);
+        this.setGame(classicBowlingGame);
         LOG.info("Done: Game finished");
     }
 }

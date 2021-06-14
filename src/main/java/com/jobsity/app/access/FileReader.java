@@ -43,30 +43,29 @@ public class FileReader implements DataAccessInterface<HashMap<String, ArrayList
             if (rollsCount == 0) {
                 throw new IOException("Verify '" + Constants.DEFAULT_FILE_NAME + "' is not an empty file");
             }
-            Stream<String> fileLines = Files.lines(path);
-
-            fileLines.forEach(fileLine -> {
-                try {
-                    if (Validators.isValidRoll(fileLine)) {
-                        String[] playerRoll = fileLine.split(" ");
-                        String player = playerRoll[0];
-                        String roll = playerRoll[1].toUpperCase();
-                        if (!data.containsKey(player)) {
-                            ArrayList<String> rolls = new ArrayList<String>();
-                            rolls.add(roll);
-                            data.put(player, rolls);
-                        } else {
-                            data.get(player).add(roll);
+            try (Stream<String> fileLines = Files.lines(path)) {
+                fileLines.forEach(fileLine -> {
+                    try {
+                        if (Validators.isValidRoll(fileLine)) {
+                            String[] playerRoll = fileLine.split(" ");
+                            String player = playerRoll[0].toUpperCase();
+                            String roll = playerRoll[1].toUpperCase();
+                            if (!data.containsKey(player)) {
+                                ArrayList<String> rolls = new ArrayList<>();
+                                rolls.add(roll);
+                                data.put(player, rolls);
+                            } else {
+                                data.get(player).add(roll);
+                            }
                         }
+                    } catch (IOException e) {
+                        LOG.log(Level.SEVERE, e.getMessage(), e.fillInStackTrace());
+                        System.exit(0);
                     }
-                } catch (IOException e) {
-                    LOG.log(Level.SEVERE, e.getMessage(), e.fillInStackTrace());
-                    System.exit(0);
-                }
-            });
-            fileLines.close();
+                });
+            }
             LOG.info("Done: Data successfully loaded");
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e.fillInStackTrace());
             System.exit(0);
         }
