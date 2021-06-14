@@ -1,4 +1,4 @@
-package com.jobsity.app.util;
+package com.jobsity.app.model.util;
 
 public class Utils {
     public static int convertRollStringToInt(String roll) {

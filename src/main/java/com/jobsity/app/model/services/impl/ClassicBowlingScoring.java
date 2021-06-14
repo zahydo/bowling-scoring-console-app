@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import com.jobsity.app.model.entities.Frame;
 import com.jobsity.app.model.entities.Game;
 import com.jobsity.app.model.services.interfaces.GameScoring;
-import com.jobsity.app.util.Utils;
+import com.jobsity.app.model.util.Utils;
 
 public class ClassicBowlingScoring implements GameScoring {
     private final Logger LOG = Logger.getLogger(ClassicBowlingScoring.class.getName());

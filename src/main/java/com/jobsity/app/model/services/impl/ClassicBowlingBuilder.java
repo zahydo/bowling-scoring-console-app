@@ -9,9 +9,9 @@ import java.util.logging.Logger;
 import com.jobsity.app.model.entities.Frame;
 import com.jobsity.app.model.entities.Player;
 import com.jobsity.app.model.services.interfaces.GameBuilder;
+import com.jobsity.app.model.util.Constants;
+import com.jobsity.app.model.util.Utils;
 import com.jobsity.app.model.util.Validators;
-import com.jobsity.app.util.Constants;
-import com.jobsity.app.util.Utils;
 
 public class ClassicBowlingBuilder extends GameBuilder {
     private final Logger LOG = Logger.getLogger(ClassicBowlingBuilder.class.getName());

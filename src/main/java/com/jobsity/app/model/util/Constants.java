@@ -1,4 +1,4 @@
-package com.jobsity.app.util;
+package com.jobsity.app.model.util;
 
 public class Constants {
     public static final String DEFAULT_FILE_NAME = "rolls.txt";

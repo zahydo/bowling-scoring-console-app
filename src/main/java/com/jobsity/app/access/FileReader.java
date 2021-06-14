@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 import com.jobsity.app.access.interfaces.DataAccessInterface;
+import com.jobsity.app.model.util.Constants;
 import com.jobsity.app.model.util.Validators;
-import com.jobsity.app.util.Constants;
 
 public class FileReader implements DataAccessInterface<HashMap<String, ArrayList<String>>> {
     private final Logger LOG = Logger.getLogger(FileReader.class.getName());

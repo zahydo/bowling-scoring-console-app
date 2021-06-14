@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Set;
 
 import com.jobsity.app.model.entities.Game;
-import com.jobsity.app.util.Constants;
 
 public class Validators {
 
