@@ -26,7 +26,7 @@ mvn --version
 
 [@sahydo ](https://sahydo.com)
 
-**NO GIT REMOTE REPO**
+[Jobsity Remote Repo](https://git.jobsity.com/sahydo/JavaChallenge/-/tree/develop)
 
 ## Notes
 
