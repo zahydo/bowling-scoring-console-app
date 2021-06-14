@@ -36,6 +36,7 @@ public class ClassicBowlingScoring implements GameScoring {
                 calculateTotalScoringByFrame(frame, frameNext, frameNextNext, framePrevious);
                 index++;
             }
+            player.setScore(player.getFrames().getLast().getTotalScore());
         });
 
     }

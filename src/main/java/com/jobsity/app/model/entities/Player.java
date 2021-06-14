@@ -33,6 +33,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return name + ": " + (frames != null ? frames.size() : 0)+ " frames";
+        return name + ": " + (frames != null ? frames.size() : 0)+ " frames. Score: " + score;
     }
 }

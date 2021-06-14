@@ -46,13 +46,13 @@ public class ClassicBowlingBuilder extends GameBuilder {
         while (i < rolls.size()){
             try {
                 String roll = rolls.get(i);
-                if (roll.equals("10") && frameCounter < 9) {
+                if (roll.equals("10") && frameCounter < game.getFrameLimit() - 1) {
                     frames.add(new Frame(frameCounter, roll, null, null, true, false, 10, 0));
                     i++;
                 } else {
                     int ball1 = Utils.convertRollStringToInt(roll);
                     int ball2 = Utils.convertRollStringToInt(rolls.get(i+1));
-                    if (frameCounter < 9) {
+                    if (frameCounter < game.getFrameLimit() - 1) {
                         int subTotalScore = ball1 + ball2;
                         boolean spare = subTotalScore == 10;
                         frames.add(new Frame(frameCounter, roll, rolls.get(i +1), null, false, spare, subTotalScore, 0));
@@ -70,7 +70,7 @@ public class ClassicBowlingBuilder extends GameBuilder {
                 System.exit(0);
             }
         }
-        if (frameCounter != 10) {
+        if (frameCounter != game.getFrameLimit()) {
             LOG.log(Level.SEVERE, "Check rolls for: '" + player + "'");
             System.exit(0);
         }
