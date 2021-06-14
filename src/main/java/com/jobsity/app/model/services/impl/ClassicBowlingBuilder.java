@@ -1,4 +1,4 @@
-package com.jobsity.app.model.impl;
+package com.jobsity.app.model.services.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,22 +8,24 @@ import java.util.logging.Logger;
 
 import com.jobsity.app.model.entities.Frame;
 import com.jobsity.app.model.entities.Player;
-import com.jobsity.app.model.interfaces.GameBuilder;
+import com.jobsity.app.model.services.interfaces.GameBuilder;
 import com.jobsity.app.model.util.Validators;
 import com.jobsity.app.util.Constants;
 import com.jobsity.app.util.Utils;
 
 public class ClassicBowlingBuilder extends GameBuilder {
-    final Logger LOG = Logger.getLogger(ClassicBowlingBuilder.class.getName());
+    private final Logger LOG = Logger.getLogger(ClassicBowlingBuilder.class.getName());
 
     @Override
     public void buildPlayers(HashMap<String, ArrayList<String>> data) {
+        LOG.info("Start: Build players");
         try {
             if (game == null || game.getFrameLimit() == null) {
                 configureGame();
             }
             if (Validators.isCompleteRolls(data, this.getGame())) {
                 data.keySet().stream().forEach(player -> {
+                    LOG.info("Start: Building player: " + player);
                     Player playerObject = new Player();
                     playerObject.setName(player);
                     playerObject.setFrames(buildFrames(data, player));
@@ -33,6 +35,7 @@ public class ClassicBowlingBuilder extends GameBuilder {
                     game.getPlayers().add(playerObject);
                 });
             }
+            LOG.info("Done: Build players");
         } catch (Exception e) {
             LOG.log(Level.SEVERE, e.getMessage(), e.fillInStackTrace());
         }
@@ -66,7 +69,7 @@ public class ClassicBowlingBuilder extends GameBuilder {
                 }
                 frameCounter++;
             } catch (IndexOutOfBoundsException e) {
-                LOG.log(Level.SEVERE, "Check rolls for: '" + player + "'");
+                LOG.log(Level.SEVERE, "Check rolls for: '" + player + "'", e);
                 System.exit(0);
             }
         }

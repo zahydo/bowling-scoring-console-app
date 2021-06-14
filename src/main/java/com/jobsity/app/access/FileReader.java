@@ -15,7 +15,7 @@ import com.jobsity.app.model.util.Validators;
 import com.jobsity.app.util.Constants;
 
 public class FileReader implements DataAccessInterface<HashMap<String, ArrayList<String>>> {
-    final Logger LOG = Logger.getLogger(FileReader.class.getName());
+    private final Logger LOG = Logger.getLogger(FileReader.class.getName());
     private String fileName;
 
     public String getFileName() {
@@ -35,6 +35,7 @@ public class FileReader implements DataAccessInterface<HashMap<String, ArrayList
 
     @Override
     public HashMap<String, ArrayList<String>> getData() {
+        LOG.info("Start: Data successfully loaded");
         HashMap<String, ArrayList<String>> data = new HashMap<>();
         Path path = Paths.get(fileName != null ? fileName : Constants.DEFAULT_FILE_NAME);
         try {
@@ -64,6 +65,7 @@ public class FileReader implements DataAccessInterface<HashMap<String, ArrayList
                 }
             });
             fileLines.close();
+            LOG.info("Done: Data successfully loaded");
         } catch (Exception e) {
             LOG.log(Level.SEVERE, e.getMessage(), e.fillInStackTrace());
             System.exit(0);

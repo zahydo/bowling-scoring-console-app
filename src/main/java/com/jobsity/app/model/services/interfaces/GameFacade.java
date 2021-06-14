@@ -1,4 +1,4 @@
-package com.jobsity.app.model.interfaces;
+package com.jobsity.app.model.services.interfaces;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,11 +19,9 @@ public abstract class GameFacade {
     }
 
     protected abstract void runGame(HashMap<String, ArrayList<String>> data);
-    protected abstract void showScoring();
 
     public void initGame() {
         DataAccessInterface<HashMap<String, ArrayList<String>>> access = new FileReader();
         runGame(access.getData());
-        showScoring();
     }
 }

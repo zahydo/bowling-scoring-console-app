@@ -47,32 +47,12 @@ public class Validators {
             int size = data.get(invalidPlayer).size();
             if (size > ROLLS_MAX_LIMIT) {
                 isComplete = false;
-                throw new Exception("'" + invalidPlayer + "' has " + (size - ROLLS_MAX_LIMIT)  + " extra rolls");
+                throw new Exception("'" + invalidPlayer + "' has " + (size - ROLLS_MAX_LIMIT) + " extra rolls");
             } else if (size < ROLLS_MIN_LIMIT) {
                 isComplete = false;
-                throw new Exception("'" + invalidPlayer + "' has " + (ROLLS_MAX_LIMIT-size)  + " pending rolls");
+                throw new Exception("'" + invalidPlayer + "' has " + (ROLLS_MAX_LIMIT - size) + " pending rolls");
             }
-        } 
-        /*else {
-            for (String player : players) {
-                ArrayList<Integer> strikes = new ArrayList<>();
-                ArrayList<String> rolls = data.get(player);
-                // It only validates the strikes if is not the frame 10 (last 3 rolls)
-                for (int i = 0; i < rolls.size() - 3; i++) {
-                    if (rolls.get(i).equals("10")){
-                        strikes.add(i);
-                    }
-                }
-                int counter = strikes.size() + rolls.size();
-                if (counter > ROLLS_MAX_LIMIT){
-                    isComplete = false;
-                    throw new Exception("Player '" + player + "' has more than allowed rolls");
-                } else if (counter < ROLLS_MAX_LIMIT){
-                    isComplete = false;
-                    throw new Exception("Player '" + player + "' has less than allowed rolls");
-                }
-            }
-        }*/
+        }
         return isComplete;
     }
 }

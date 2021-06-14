@@ -1,4 +1,4 @@
-package com.jobsity.app.model.interfaces;
+package com.jobsity.app.model.services.interfaces;
 
 import com.jobsity.app.model.entities.Game;
 

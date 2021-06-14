@@ -1,16 +1,19 @@
-package com.jobsity.app.model.impl;
+package com.jobsity.app.model.services.impl;
 
 import java.util.ListIterator;
+import java.util.logging.Logger;
 
 import com.jobsity.app.model.entities.Frame;
 import com.jobsity.app.model.entities.Game;
-import com.jobsity.app.model.interfaces.GameScoring;
+import com.jobsity.app.model.services.interfaces.GameScoring;
 import com.jobsity.app.util.Utils;
 
 public class ClassicBowlingScoring implements GameScoring {
+    private final Logger LOG = Logger.getLogger(ClassicBowlingScoring.class.getName());
 
     @Override
     public void calculate(Game game) {
+        LOG.info("Start: Calculate scoring");
         game.getPlayers().forEach(player -> {
             int index = 0;
             ListIterator<Frame> iterator = player.getFrames().listIterator();
@@ -38,7 +41,7 @@ public class ClassicBowlingScoring implements GameScoring {
             }
             player.setScore(player.getFrames().getLast().getTotalScore());
         });
-
+        LOG.info("Done: Scoring calculated");
     }
 
     private void calculateTotalScoringByFrame(Frame frame, Frame frameNext, Frame frameNextNext, Frame framePrevious) {

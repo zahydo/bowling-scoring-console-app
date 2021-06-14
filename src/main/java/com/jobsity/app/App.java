@@ -1,7 +1,7 @@
 package com.jobsity.app;
 
-import com.jobsity.app.model.impl.ClassicBowlingFacade;
-import com.jobsity.app.model.interfaces.GameFacade;
+import com.jobsity.app.presentation.impl.ClassicBowlingView;
+import com.jobsity.app.presentation.services.GameView;
 
 /**
  * Bowling Scoring app
@@ -9,7 +9,7 @@ import com.jobsity.app.model.interfaces.GameFacade;
  */
 public class App {
     public static void main(String[] args) {
-        GameFacade facade = new ClassicBowlingFacade();
-        facade.initGame();
+        GameView view = new ClassicBowlingView();
+        view.showScoring();
     }
 }
