@@ -14,14 +14,29 @@ import com.jobsity.app.access.interfaces.DataAccessInterface;
 import com.jobsity.app.model.util.Validators;
 import com.jobsity.app.util.Constants;
 
-
 public class FileReader implements DataAccessInterface<HashMap<String, ArrayList<String>>> {
     final Logger LOG = Logger.getLogger(FileReader.class.getName());
+    private String fileName;
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public FileReader() {
+    }
+
+    public FileReader(String fileName) {
+        this.fileName = fileName;
+    }
 
     @Override
     public HashMap<String, ArrayList<String>> getData() {
         HashMap<String, ArrayList<String>> data = new HashMap<>();
-        Path path = Paths.get(Constants.DEFAULT_FILE_NAME);
+        Path path = Paths.get(fileName != null ? fileName : Constants.DEFAULT_FILE_NAME);
         try {
             long rollsCount = Files.lines(path).count();
             if (rollsCount == 0) {
