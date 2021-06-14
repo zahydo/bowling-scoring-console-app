@@ -75,6 +75,7 @@ or move the file to the root of the project:
 
 rolls.txt
 
+If you don't pass the **FILE_NAME**, it takes the default file name: rolls.txt 
 ## Maven site
 
 To know about the project you can generate and visite the project's local site:
