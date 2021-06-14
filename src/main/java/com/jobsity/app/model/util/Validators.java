@@ -27,6 +27,7 @@ public class Validators {
                 }
             } else {
                 isValid = false;
+                throw new IOException("No valid entry: '" + data + "'");
             }
         } else {
             isValid = false;

@@ -21,18 +21,18 @@ public class GameFacadeIT extends TestCase {
     public void testInitGame() {
         System.out.println("initGame");
         GameFacade facade = new ClassicBowlingFacade();
-        DataAccessInterface<HashMap<String, ArrayList<String>>> access = new FileReader("rolls_test.txt");
+        String fileName = "rolls.txt";
+        DataAccessInterface<HashMap<String, ArrayList<String>>> access = new FileReader(fileName);
         GameBuilder builder = new ClassicBowlingBuilder();
         builder.buildPlayers(access.getData());
         Game classicBowlingGame = builder.getGame();
         GameScoring scoring = new ClassicBowlingScoring();
         scoring.calculate(classicBowlingGame);
         facade.setGame(classicBowlingGame);
-        GameView view = new ClassicBowlingView();
+        GameView view = new ClassicBowlingView(fileName);
         view.showScoring();
-        assertEquals(classicBowlingGame.getPlayers().size(), 1);
+        assertEquals(classicBowlingGame.getPlayers().size(), 4);
         assertEquals(classicBowlingGame.getPlayers().get(0).getFrames().size(), 10);
-        assertEquals(classicBowlingGame.getPlayers().get(0).getScore().intValue(), 300);
     }
     
 }

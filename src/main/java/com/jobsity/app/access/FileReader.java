@@ -35,7 +35,7 @@ public class FileReader implements DataAccessInterface<HashMap<String, ArrayList
 
     @Override
     public HashMap<String, ArrayList<String>> getData() {
-        LOG.info("Start: Data successfully loaded");
+        LOG.info("Start: Loading Data...");
         HashMap<String, ArrayList<String>> data = new HashMap<>();
         Path path = Paths.get(fileName != null ? fileName : Constants.DEFAULT_FILE_NAME);
         try {
@@ -66,7 +66,7 @@ public class FileReader implements DataAccessInterface<HashMap<String, ArrayList
             }
             LOG.info("Done: Data successfully loaded");
         } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getMessage(), e.fillInStackTrace());
+            LOG.log(Level.SEVERE, "No such file: " + fileName, e.fillInStackTrace());
             System.exit(0);
         }
         return data;

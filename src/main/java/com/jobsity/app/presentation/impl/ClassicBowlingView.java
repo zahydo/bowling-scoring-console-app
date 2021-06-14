@@ -13,8 +13,9 @@ public class ClassicBowlingView implements GameView {
     private final Logger LOG = Logger.getLogger(ClassicBowlingView.class.getName());
     private GameFacade facade;
 
-    public ClassicBowlingView() {
+    public ClassicBowlingView(String fileName) {
         this.facade = new ClassicBowlingFacade();
+        this.facade.setFileName(fileName);
         this.facade.initGame();
     }
 

@@ -16,7 +16,7 @@ public class FileReaderTest extends TestCase {
      */
     public void testGetData() {
         System.out.println("getData");
-        FileReader instance = new FileReader("rolls_test.txt");
+        FileReader instance = new FileReader("rolls_accessDataTest.txt");
         HashMap<String, ArrayList<String>> expResult = Utils.getTestData();
         HashMap<String, ArrayList<String>> result = instance.getData();
         assertEquals(expResult, result);

@@ -9,6 +9,15 @@ import com.jobsity.app.model.entities.Game;
 
 public abstract class GameFacade {
     protected Game game;
+    protected String fileName;
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileName() {
+        return this.fileName;
+    }
 
     public void setGame(Game game) {
         this.game = game;
@@ -21,7 +30,7 @@ public abstract class GameFacade {
     protected abstract void runGame(HashMap<String, ArrayList<String>> data);
 
     public void initGame() {
-        DataAccessInterface<HashMap<String, ArrayList<String>>> access = new FileReader();
+        DataAccessInterface<HashMap<String, ArrayList<String>>> access = new FileReader(this.fileName);
         runGame(access.getData());
     }
 }

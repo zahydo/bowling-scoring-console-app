@@ -1,5 +1,6 @@
 package com.jobsity.app;
 
+import com.jobsity.app.model.util.Constants;
 import com.jobsity.app.presentation.impl.ClassicBowlingView;
 import com.jobsity.app.presentation.services.GameView;
 
@@ -9,7 +10,13 @@ import com.jobsity.app.presentation.services.GameView;
  */
 public class App {
     public static void main(String[] args) {
-        GameView view = new ClassicBowlingView();
+        String fileName;
+        try {
+            fileName = args[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            fileName = Constants.DEFAULT_FILE_NAME;
+        }
+        GameView view = new ClassicBowlingView(fileName);
         view.showScoring();
     }
 }

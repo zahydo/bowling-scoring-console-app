@@ -6,6 +6,27 @@
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>bowling-scoring</name>
+  <description>This app allows knowing the complete scoring in a classic bowling game for one or more players.</description>
+  <inceptionYear>2021</inceptionYear>
+  <organization>
+    <name>Jobsity</name>
+    <url>https://jobsity.com</url>
+  </organization>
+  <developers>
+    <developer>
+      <id>sahydo</id>
+      <name>Santiago Hyun Dorado</name>
+      <email>santiagodorado@unicauca.edu.co</email>
+      <url>https://sahydo.com</url>
+      <organization>jobsity</organization>
+      <organizationUrl>https://jobsity.com</organizationUrl>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>America/Bogota</timezone>
+    </developer>
+  </developers>
   <url>http://maven.apache.org</url>
   <properties>
     <maven.compiler.release>11</maven.compiler.release>
